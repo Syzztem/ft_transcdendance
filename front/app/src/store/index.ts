@@ -6,6 +6,7 @@ import IPaddle from '../models/IPaddle'
 import IScore from '../models/IScore'
 import ITable from '../models/ITable'
 import IGameConfig from '../models/IGameConfig'
+import IMessage from '../models/IMessage'
 
 export default new Vuex.Store({
     state: {
@@ -20,7 +21,8 @@ export default new Vuex.Store({
         adversePaddle: <IPaddle>{},
         ownerScore: <IScore>{},
         adverseScore: <IScore>{},
-        table: <ITable>{}
+        table: <ITable>{},
+        messages: <Array<IMessage>>[]
     },
     mutations: {
         setPlayer(set, player) {
@@ -49,6 +51,9 @@ export default new Vuex.Store({
         },
         setTable(set, table) {
             set.table = table
+        },
+        setMessages(set, messages) {
+            set.messages = messages
         }
     },
     getters: {
@@ -60,6 +65,7 @@ export default new Vuex.Store({
         getAdversePaddle: get => get.adversePaddle,
         getOwnerScore: get => get.ownerScore,
         getAdverseScore: get => get.adverseScore,
-        getTable: get => get.table
+        getTable: get => get.table,
+        getMessages: get => get.messages
     }
 })
