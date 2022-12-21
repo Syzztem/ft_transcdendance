@@ -6,7 +6,7 @@ import IPaddle from '../models/IPaddle'
 import IScore from '../models/IScore'
 import ITable from '../models/ITable'
 import IGameConfig from '../models/IGameConfig'
-import IMessage from '../models/IMessage'
+import IMessage from '../models/chat/IMessage'
 
 export default new Vuex.Store({
     state: {

@@ -1,43 +1,45 @@
 <script lang="ts">
-import IMessage from '../models/IMessage'
+import { ref } from 'vue'
 
 export default {
-    data()
-    {
+    data() {
         return {
         }
     },
-    computed: {
-        messages: {
-            get() {
-                return this.$store.getters.getMessages
-            },
-            set(val: IMessage) {
-                this.$store.commit('setMessages', val)
-            }
+    methods: 
+    {
+        sendmsg() 
+        {
+            let send = <HTMLElement> document.getElementById('id_newmsg')
+            let input = <any> document.getElementById('inputid')
+            send.innerHTML += input.value + '<br/>'
+            input.value = ''
         }
     },
-    mounted() {
-        this.messages[0] = 'test'
-        this.messages[1] = 'test'
-    },
-    /*methods: {
-        sendMessage()
-    }*/
 }
+
 </script>
 
 <template>
-    <div id="divMessages">
-        <h2>{{messages}}</h2>
-    </div>
-    <div id="divInput">
-        <textarea>user input</textarea>
-    </div>
-    <div>
-        <button id="sendButton">send msg</button>
-    </div>
-</template>
+    <v-container class = "container">
+        <div id="id_newmsg"></div>
+        <input @change='sendmsg' id='inputid'>
+    </v-container>
+  </template>
 
 <style scoped>
+.container
+{
+    color:red;
+}
 </style>
+
+
+
+
+
+
+
+
+
+
