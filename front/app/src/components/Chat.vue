@@ -1,78 +1,43 @@
-<script lang="ts">
-import { ref } from 'vue'
+<script lang="ts" setup>
 
-export default {
-    data() {
-        return {
-        }
-    },
-    methods: 
-    {
-        sendmsg() 
-        {
-            let send = <HTMLElement> document.getElementById('chatbox')
-            let input = <any> document.getElementById('inputid')
-            send.innerHTML += input.value + '<br/>'
-            input.value = ''
-        }
-    },
+import { reactive, ref } from "vue";
+
+const state = reactive
+	<{
+      messages: string[],
+      currentMessage: string,
+    }>
+	({
+      messages: [],
+      currentMessage: '',
+    })
+
+function UpdateMessages()
+{
+	state.messages.push(state.currentMessage)
+	state.currentMessage = ''
 }
 
 </script>
 
 <template>
-    <v-container class = "container">
-        <div class="row">
-            <div id="chatbox"  class="column"></div>
-        <div id="userlist" class="column">users</div>
-        <div id="chanlist" class="column">chans</div>
-        </div>
-    </v-container>
-    <input @change='sendmsg' id='inputid'>
-    
-  </template>
+	<div class = "container">
+		<div class="users">users</div>
+		<div class="div">messages
+			<div v-for="message in state.messages" :key="message">{{ message }}</div>
+		</div>
+		<div class="channels">channels</div>
+	</div>
+	
+	<input v-model="state.currentMessage" @change="UpdateMessages">
+</template>
 
-<style scoped>
-.container
-{
-    background-color: rgb(145, 255, 0);
-    display: flex;
-    content: "";
-    display: table;
-}
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+<style>
 
-#chatbox
-{
-    background-color: rgb(17, 17, 194);
-    color: rgb(53, 187, 0);
-}
-#userlist
-{
-    background-color: red;
-}
-#chanlist
-{
-    background-color: green;
-}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-#column {
-  float: left;
-  width: 33.33%;
-}
 </style>
-
-
-
-
-
-
-
-
-
-

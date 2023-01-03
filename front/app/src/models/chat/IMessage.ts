@@ -4,5 +4,5 @@ interface IMessage {
     textLen: number
     targetId: number
 }
-
+ 
 export default IMessage
